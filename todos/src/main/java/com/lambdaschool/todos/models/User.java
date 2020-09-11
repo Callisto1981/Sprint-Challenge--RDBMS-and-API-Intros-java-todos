@@ -44,6 +44,8 @@ public class User extends Auditable
     @Email
     private String primaryemail;
 
+
+
     /**
      * Default constructor used primarily by the JPA.
      */
@@ -63,15 +65,21 @@ public class User extends Auditable
      * @param username     The username (String) of the user
      * @param password     The password (String) of the user
      * @param primaryemail The primary email (String) of the user
+     *
+     *
      */
+
+
     public User(
         String username,
         String password,
-        String primaryemail)
+        String primaryemail
+    )
     {
         setUsername(username);
         setPassword(password);
         this.primaryemail = primaryemail;
+        ;
     }
 
 

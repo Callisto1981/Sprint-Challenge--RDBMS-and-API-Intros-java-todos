@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "todos")
-public class Todos
+public class Todos extends Auditable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -14,9 +14,11 @@ public class Todos
     @Column(nullable = false)
     private String description;
     private boolean completed;
+
+
     @ManyToOne
     @JoinColumn(name = "userid", nullable = false)
-    @JsonIgnoreProperties("todos")
+    @JsonIgnoreProperties(value = "todos", allowSetters = true)
     private User user;
 
     public Todos()
@@ -24,9 +26,19 @@ public class Todos
     }
 
     public Todos(
+        User user,
+        String description
+        )
+    {
+        this.description = description;
+        this.user = user;
+    }
+
+    public Todos(
+        User user,
         String description,
-        boolean completed,
-        User user)
+        boolean completed
+        )
     {
         this.description = description;
         this.completed = completed;
