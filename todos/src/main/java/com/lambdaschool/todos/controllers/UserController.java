@@ -72,12 +72,8 @@ public class UserController
      * @throws URISyntaxException Exception if something does not work in creating the location header
      * @see UserService#save(User) UserService.save(User)
      */
-    @PostMapping(value = "/user",
-        consumes = {"application/json"})
-    public ResponseEntity<?> addNewUser(
-        @Valid
-        @RequestBody
-            User newuser) throws URISyntaxException
+    @PostMapping(value = "/user", consumes = {"application/json"}, produces = {"application/json"})
+    public ResponseEntity<?> addNewUser(@Valid @RequestBody User newuser) throws URISyntaxException
     {
         newuser.setUserid(0);
         newuser = userService.save(newuser);
@@ -90,9 +86,7 @@ public class UserController
             .toUri();
         responseHeaders.setLocation(newUserURI);
 
-        return new ResponseEntity<>(null,
-            responseHeaders,
-            HttpStatus.CREATED);
+        return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
     }
 
     /**
@@ -103,9 +97,7 @@ public class UserController
      * @return Status of OK
      */
     @DeleteMapping(value = "/user/{id}")
-    public ResponseEntity<?> deleteUserById(
-        @PathVariable
-            long id)
+    public ResponseEntity<?> deleteUserById(@PathVariable long id)
     {
         userService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);

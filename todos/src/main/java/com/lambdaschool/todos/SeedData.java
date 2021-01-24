@@ -1,7 +1,10 @@
 package com.lambdaschool.todos;
 
+import com.lambdaschool.todos.models.Todos;
 import com.lambdaschool.todos.models.User;
+import com.lambdaschool.todos.services.TodosService;
 import com.lambdaschool.todos.services.UserService;
+import jdk.jfr.Description;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -20,6 +23,8 @@ public class SeedData implements CommandLineRunner
     /**
      * Connects the user service to this process
      */
+    @Autowired
+    TodosService todosService;
     @Autowired
     UserService userService;
 
@@ -41,7 +46,7 @@ public class SeedData implements CommandLineRunner
                            "admin@lambdaschool.local");
         u1.getTodos()
                 .add(new Todos(u1,
-                               "Give Joe access rights"));
+                    "Give Joe access rights"));
         u1.getTodos()
                 .add(new Todos(u1,
                                "Change the color of the home page"));

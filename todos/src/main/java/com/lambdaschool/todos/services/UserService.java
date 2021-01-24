@@ -47,5 +47,5 @@ public interface UserService
      *
      * @return List of UserNameCountTodos
      */
-    List<UserNameCountTodos> getCountUserTodos();
+     List<UserNameCountTodos> getCountUserTodos();
 }
